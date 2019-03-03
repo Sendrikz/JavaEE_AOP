@@ -15,5 +15,15 @@ public class Main {
         } catch (BadGameException e) {
             System.out.println(e.getMessage());
         }
+
+        System.out.println("*** AOP context");
+
+        ApplicationContext aopContext = new ClassPathXmlApplicationContext("aopContext.xml");
+        TennisPlayer aopPlayer = aopContext.getBean("playerAOP", TennisPlayer.class);
+        try {
+            aopPlayer.play(3);
+        } catch (BadGameException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
